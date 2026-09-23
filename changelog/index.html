@@ -93,6 +93,95 @@
 
 <section class="release">
   <div class="rhead">
+    <span class="ver">1.0 (6)</span>
+    <h2>Back on every phone that had it, and nothing left for Play to flag</h2>
+  </div>
+  <div class="date">24 September 2026</div>
+  <p class="summary">
+    1.0 (5) asked for Android 8, and Play counted 1,406 devices it could no longer serve.
+    This release asks for Android 7 again, and makes the parts that needed 8 work on 7
+    instead of leaving 7 out. The rest is what Play's pre-launch report and the build's
+    own checks found, fixed where it came from rather than silenced.
+  </p>
+
+  <div class="items">
+    <div class="item">
+      <h3><span class="tag">fix</span>Android 7 phones get the app again</h3>
+      <p>
+        Notification channels, the qibla's vibration pattern and the hardware picture
+        behind the shared card are Android 8 features, and the code used them without
+        asking which Android it was running on. 1.0 (5) answered that by dropping
+        Android 7. Each of them now checks instead: channels are created from 8, the qibla
+        buzz uses the older vibration call on 7, and the shared card only asks for a
+        hardware picture where one exists. Every phone that had the app can update it.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">new</span>The Qibla screen turns with the phone</h3>
+      <p>
+        It was locked to portrait, and Play reads that lock as "needs a portrait screen":
+        TVs, cars and some tablets could not install the app at all. The screen turns now.
+        The compass accounts for the rotation, so the heading is still measured from the
+        top of the screen as you hold it, and the dial fits whichever side is shorter.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">new</span>A themed icon on Android 13 and later</h3>
+      <p>
+        With themed icons switched on, Android tints each icon from a one-colour layer the
+        app provides. The app provided none, so it showed as a plain disc. It has one now:
+        the crescent and mosque, cut from its own artwork.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>Widget text is no smaller than Android recommends</h3>
+      <p>
+        The smallest widget lines were 9 and 10, under the 11 Android sets as the floor for
+        readable text. They are 11 now. The room for them comes out of the margins around
+        the dividers and the progress bar, so the widgets stay the size they were.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The screen edges follow Android 15</h3>
+      <p>
+        Play's pre-launch report named three calls Android 15 retired: the two that colour
+        the status and navigation bars, and the old camera-cutout mode. The app still draws
+        under the bars, but their colours now come from the theme, set per Android version,
+        so nothing retired is called on any phone.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The adhan screen shows over the lock screen one way, not two</h3>
+      <p>
+        From Android 8.1 an app says it may appear over the lock screen through the screen
+        itself; before that, through window flags. The adhan screen did both on every phone.
+        It now uses the one that belongs to the phone's version, and on Android 16 it asks
+        to start from the background in the terms 16 expects.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The Fajr setting names tathwib</h3>
+      <p>
+        The help bubble under the Fajr setting opened with "tarqiya", a word that needed an
+        explanation of its own. It now names the addition by the word someone looking for
+        it would use, tathwib, and then says what it adds to the adhan.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">perf</span>A missing adhan recording fails the build, not Maghrib</h3>
+      <p>
+        The recordings, weather icons and widget backgrounds were looked up by name while
+        the app ran, so the build had to keep every one of them blindly and could not tell
+        when one was missing. Each is now named in the code. The build keeps what is used,
+        drops seventeen pictures and layouts nothing used, and refuses to finish if a
+        recording is not there.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="release">
+  <div class="rhead">
     <span class="ver">1.0 (4)</span>
     <h2>The Fajr adhan says the Fajr line, and silent means silent</h2>
   </div>
