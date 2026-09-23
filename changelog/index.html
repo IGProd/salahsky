@@ -93,6 +93,157 @@
 
 <section class="release">
   <div class="rhead">
+    <span class="ver">1.0 (4)</span>
+    <h2>The Fajr adhan says the Fajr line, and silent means silent</h2>
+  </div>
+  <div class="date">23 September 2026</div>
+  <p class="summary">
+    Two things the app claimed but did not do: the call for Fajr is not the call for any
+    other prayer, and a phone on silent should not be the one thing in the room making a
+    noise. Plus a compass that survives a phone with no rotation sensor, and widgets that
+    are no longer cut off by the launcher.
+  </p>
+
+  <div class="items">
+    <div class="item">
+      <h3><span class="tag">new</span>"As-salatu khayrun min an-nawm" is said in the Fajr adhan</h3>
+      <p>
+        The line belongs inside the adhan for Fajr, after "hayya ala al-falah" and before
+        the closing takbir. None of the bundled recordings is a Fajr recording, so with any
+        of them it was never heard. The app now inserts it in whichever recording you
+        already chose: the recording is paused at a point measured in its own audio — the
+        pause the muezzin leaves after the second "hayya ala al-falah" — the line is said in
+        the voice of the muezzin of Quba mosque, and the recording carries on. One point per
+        recording, and the line is matched to that recording's loudness so it is the same
+        voice at the same distance rather than a clip cutting in. Fajr only, off nowhere
+        else, and it can be turned off under the reciter in settings.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>Silent mode now calls the prayer without sounding it</h3>
+      <p>
+        With the setting on, the adhan still played. What it silenced was not the part that
+        makes the noise. The call now arrives as it always did — full screen, notification,
+        stop button — with the sound left out and a "silent mode" badge on the screen, so a
+        missing adhan reads as a setting you chose rather than an alarm that failed.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">new</span>The Qibla compass works on phones with no rotation sensor</h3>
+      <p>
+        It asked for TYPE_ROTATION_VECTOR and gave up when the phone had none, which on
+        those phones meant a compass screen with no compass. It now falls back to the
+        accelerometer and magnetometer directly and computes the same heading from them.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">new</span>The Qibla screen says when the field is being disturbed</h3>
+      <p>
+        A magnetometer near a laptop, a magnetic case or a car dashboard is confidently
+        wrong, and calibrating cannot fix it. The app now compares the measured field
+        strength against what it should be at your location, warns when the two disagree,
+        and withholds the buzz that says "this is the direction" — landing on a disturbed
+        reading is worse than not landing.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The Qibla needle is no longer ninety degrees out in landscape</h3>
+      <p>
+        The heading is measured against the top edge of the device. When the activity
+        rotated, the dial's own "up" was no longer that edge, so the whole needle turned
+        with the screen. The compass is portrait now, which a qibla compass has no reason
+        not to be.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>Widgets are no longer cut off on the home screen</h3>
+      <p>
+        Three widgets declared a minimum height of 110dp for content that measures up to
+        180dp, and a launcher believes that number: it handed over a cell too short and
+        Android clipped what did not fit — the countdown on a Pixel, more on a grid with
+        shorter rows. Every widget now declares the height it actually needs, and cannot be
+        dragged back down into clipping.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>Widget text survives a large system font size</h3>
+      <p>
+        The widgets sized their text in sp, which scales with the phone's font setting; at
+        the largest settings the prayer names and times grew past the space they had and
+        pushed each other out of the widget. They are sized in dp now, on one line each, and
+        anything too long ends in an ellipsis instead of shoving the rest away.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">perf</span>Widget pictures are half the size they were</h3>
+      <p>
+        The sky and the clock face were drawn as full-colour bitmaps and sent to the
+        launcher through Binder, which has a hard limit on how much it will carry. They are
+        drawn at RGB_565 and the clock face at 320px instead of 420, which is the same
+        picture on a home screen and comfortably inside that limit.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>Notification categories are named in the app's language</h3>
+      <p>
+        They were created once, in English, with whatever text the app shipped that day —
+        and a channel that already exists keeps its old name forever. They are named from
+        the translations now, and renamed on upgrade rather than left as they were.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The weather shown is the weather for this hour</h3>
+      <p>
+        The forecast was read at the hour it had been fetched, so a screen opened in the
+        evening could describe the afternoon it was fetched in.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The app opens on the sky it last showed</h3>
+      <p>
+        It started from a clear sky while the forecast loaded, so almost every launch began
+        with a guess that was then corrected in front of you. It now opens on the last sky
+        it actually saw, decodes the picture before the screen asks for it — off the main
+        thread — and fades from one sky to the next.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>City search names one place once</h3>
+      <p>
+        The same town appeared several times when it was spelled several ways, two towns of
+        one name were impossible to tell apart, and no card said which country it was in.
+        Each place is now offered once, with its country, and two of one name are separated
+        by what is around them. Names are translated in both directions, so a city typed in
+        English is found in Arabic and the other way round.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>Ceuta, Melilla and Jerusalem are named correctly</h3>
+      <p>
+        Ceuta and Melilla were listed outside Morocco, and Jerusalem's country came from
+        whatever the geocoder returned. Both are now the app's own answer.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The widget's sky turns with the hour, and night starts at sunset</h3>
+      <p>
+        Night began when the forecast window closed rather than when the sun went down, an
+        overcast night was drawn as a clear one, and hail had no icon of its own. The widget
+        and the app now draw a sky by the same rule.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">new</span>The day's card can be shared as a picture or a page</h3>
+      <p>
+        Squared off, at twice the resolution, with the day, the month and the sky in it — so
+        what leaves the app is readable where it lands.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="release">
+  <div class="rhead">
     <span class="ver">1.0 (3)</span>
     <h2>Eleven fixes, and the weather finally agrees with itself</h2>
   </div>
