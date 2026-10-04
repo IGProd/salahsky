@@ -93,6 +93,58 @@
 
 <section class="release">
   <div class="rhead">
+    <span class="ver">1.0 (7)</span>
+    <h2>The adhan can be stopped from the screen again, and the hour reads right</h2>
+  </div>
+  <div class="date">4 October 2026</div>
+  <p class="summary">
+    People wrote that the adhan arrived as a notification only, with nothing on screen to
+    stop it, so they had to dig through the notifications to make it stop. Others in
+    Morocco saw every prayer an hour late on the card and the widget while the adhan
+    itself rang on time. Both are fixed, and neither touches how prayer times are
+    calculated.
+  </p>
+
+  <div class="items">
+    <div class="item">
+      <h3><span class="tag">fix</span>The adhan screen comes up again</h3>
+      <p>
+        To stop the adhan playing twice on some phones, its notification had moved to a
+        silent copy of the prayer channel, and that copy was created at low importance.
+        Android opens a screen like this only from a high-importance notification, so it
+        refused the adhan screen without saying so, and no banner came down either.
+        The silent channel is now high importance and still silent. With the phone locked
+        the adhan screen opens; with the phone in your hand a banner with Stop and Open
+        stays at the top. Android never lets an app raise a channel it already made, so
+        this one is new and the old one is removed.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">new</span>A daylight saving setting, for when the country moves first</h3>
+      <p>
+        Countries change their clocks by decree, and a phone learns of it only when its
+        system is updated, which some phones never are. Until then the app printed times
+        by the phone's old rule. Settings › Times now has Daylight saving time: Automatic,
+        +1 hour or −1 hour. It moves the hour the times are shown in, everywhere they are
+        shown: the app, the widgets and their clock, and the adhan notification. The adhan
+        fires at the moment the sun sets it, as it always did.
+      </p>
+    </div>
+    <div class="item">
+      <h3><span class="tag">fix</span>The setup reminder names what is actually missing</h3>
+      <p>
+        A few hours after setup the app says which settings the adhan still needs. Any two
+        of them read "exact alarms and background activity", so a phone missing the
+        battery exemption and full-screen permission was told its exact alarms were off
+        when they were on, and never heard about full-screen at all. Each combination now
+        has its own sentence, in English, Arabic and French.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="release">
+  <div class="rhead">
     <span class="ver">1.0 (6)</span>
     <h2>Back on every phone that had it, and nothing left for Play to flag</h2>
   </div>
